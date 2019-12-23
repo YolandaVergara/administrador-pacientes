@@ -20,6 +20,7 @@ const ListaCitas = ({ citas, eliminarCita}) => {
                         eliminarCita={eliminarCita}
                     />
 
+                    
                 ))}
             </div>
         </div>
