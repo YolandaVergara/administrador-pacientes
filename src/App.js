@@ -2,6 +2,7 @@ import React from 'react';
 import './bootstrap.min.css';
 import Header from './components/Header';
 import NuevaCita from './components/NuevaCita';
+import ListaCitas from './components/ListaCitas';
 class App extends React.Component {
 
   state = {
@@ -9,16 +10,16 @@ class App extends React.Component {
   }
 
   crearNuevaCita = datos => {
-const citas = [...this.state.citas, datos];
+    const citas = [...this.state.citas, datos];
 
-this.setState({ 
-  citas 
-});
+    this.setState({
+      citas
+    });
 
   }
   render() {
 
-    
+
     return (
       <div className="container">
         <Header
@@ -28,6 +29,11 @@ this.setState({
           <div className="col-md-10 mx-auto">
             <NuevaCita
               crearNuevaCita={this.crearNuevaCita}
+            />
+          </div>
+          <div className="mt-5 col-md-10 mx-auto">
+            <ListaCitas
+              citas={this.state.citas}
             />
           </div>
         </div>
