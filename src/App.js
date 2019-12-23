@@ -11,10 +11,14 @@ class App extends React.Component {
   crearNuevaCita = datos => {
 const citas = [...this.state.citas, datos];
 
-this.setState({ citas: citas });
+this.setState({ 
+  citas 
+});
 
   }
   render() {
+
+    
     return (
       <div className="container">
         <Header

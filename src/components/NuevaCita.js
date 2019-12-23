@@ -1,16 +1,20 @@
 import React from 'react';
 import uuid from 'uuid';
 
+
+const stateInicial = {
+  cita: {
+    mascota: '',
+    propietario: '',
+    fecha: '',
+    hora: '',
+    sintomas: ''
+  },
+  error: false
+}
+
 class NuevaCita extends React.Component {
-  state = {
-    cita: {
-      mascota: '',
-      propietario: '',
-      fecha: '',
-      hora: '',
-      sintomas: ''
-    }
-  }
+  state = { ...stateInicial }
   handleChange = ev => {
 
     console.log(ev.target.value);
@@ -33,16 +37,21 @@ class NuevaCita extends React.Component {
       });
       return;
     }
-    const nuevaCita = {...this.state.cita};
+    const nuevaCita = { ...this.state.cita };
     nuevaCita.id = uuid();
     this.props.crearNuevaCita(nuevaCita)
+    this.setState({
+      ...stateInicial
+    })
   }
   render() {
+    const { error } = this.state;
     return (
 
       <div className="card mt-5 py-5">
         <div className="card-body">
           <h2 className="card-title text-center mb-5">Rellena el formulario para una nueva cita</h2>
+          {error ? <div className="alert alert-danger mt-2 mb-5 text-center">Todos los campos son obligatorios</div> : null}
           <form onSubmit={this.handleSubmit}>
             <div className="form-group row">
               <label className="col-sm-4 col-lg-2 col-form-label">Nombre Mascota</label>
@@ -94,12 +103,14 @@ class NuevaCita extends React.Component {
               <label className="col-sm-4 col-lg-2 col-form-label">Síntomas</label>
               <div className="col-sm-8 col-lg-10">
                 <textarea
-                  type="text"
                   className="form-control"
+                  name="sintomas"
                   placeholder="Describe los síntomas"
                   onChange={this.handleChange}
-                  value={this.state.cita.sintomas}
-                />
+                  value={this.state.cita.sintomas}>
+
+                </textarea>
+
               </div>
 
             </div>
