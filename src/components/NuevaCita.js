@@ -1,13 +1,49 @@
 import React from 'react';
+import uuid from 'uuid';
+
 class NuevaCita extends React.Component {
-  state = {}
+  state = {
+    cita: {
+      mascota: '',
+      propietario: '',
+      fecha: '',
+      hora: '',
+      sintomas: ''
+    }
+  }
+  handleChange = ev => {
+
+    console.log(ev.target.value);
+    this.setState({
+      cita: {
+        ...this.state.cita,
+        [ev.target.name]: ev.target.value
+      }
+    })
+  }
+
+  handleSubmit = ev => {
+    ev.preventDefault();
+
+    const { mascota, propietario, fecha, hora, sintomas } = this.state.cita;
+
+    if (mascota === '' || propietario === '' || fecha === '' || hora === '' || sintomas === '') {
+      this.setState({
+        error: true
+      });
+      return;
+    }
+    const nuevaCita = {...this.state.cita};
+    nuevaCita.id = uuid();
+    this.props.crearNuevaCita(nuevaCita)
+  }
   render() {
     return (
 
       <div className="card mt-5 py-5">
         <div className="card-body">
           <h2 className="card-title text-center mb-5">Rellena el formulario para una nueva cita</h2>
-          <form>
+          <form onSubmit={this.handleSubmit}>
             <div className="form-group row">
               <label className="col-sm-4 col-lg-2 col-form-label">Nombre Mascota</label>
               <div className="col-sm-8 col-lg-10">
@@ -15,7 +51,9 @@ class NuevaCita extends React.Component {
                   type="text"
                   className="form-control"
                   placeholder="Nombre mascota"
-                  name="mascota" />
+                  name="mascota"
+                  onChange={this.handleChange}
+                  value={this.state.cita.mascota} />
               </div>
             </div>
             <div className="form-group row">
@@ -25,7 +63,9 @@ class NuevaCita extends React.Component {
                   type="text"
                   className="form-control"
                   placeholder="Nombre Dueño Mascota"
-                  name="propietario" />
+                  name="propietario"
+                  onChange={this.handleChange}
+                  value={this.state.cita.propietario} />
               </div>
             </div>
             <div className="form-group row">
@@ -34,7 +74,9 @@ class NuevaCita extends React.Component {
                 <input
                   type="date"
                   className="form-control"
-                  name="fecha" />
+                  name="fecha"
+                  onChange={this.handleChange}
+                  value={this.state.cita.fecha} />
               </div>
             </div>
             <div className="form-group row">
@@ -43,7 +85,9 @@ class NuevaCita extends React.Component {
                 <input
                   type="time"
                   className="form-control"
-                  name="hora" />
+                  name="hora"
+                  onChange={this.handleChange}
+                  value={this.state.cita.hora} />
               </div>
             </div>
             <div className="form-group row">
@@ -53,6 +97,8 @@ class NuevaCita extends React.Component {
                   type="text"
                   className="form-control"
                   placeholder="Describe los síntomas"
+                  onChange={this.handleChange}
+                  value={this.state.cita.sintomas}
                 />
               </div>
 
