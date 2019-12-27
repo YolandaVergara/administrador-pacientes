@@ -16,8 +16,6 @@ const stateInicial = {
 class NuevaCita extends React.Component {
   state = { ...stateInicial }
   handleChange = ev => {
-
-    console.log(ev.target.value);
     this.setState({
       cita: {
         ...this.state.cita,
@@ -108,19 +106,14 @@ class NuevaCita extends React.Component {
                   placeholder="Describe los síntomas"
                   onChange={this.handleChange}
                   value={this.state.cita.sintomas}>
-
                 </textarea>
-
               </div>
-
             </div>
             <input type="submit" className="py-3 mt-2 btn btn-success btn-block" value="Agregar nueva cita" />
-
           </form>
         </div>
       </div >
     )
   }
 }
-
 export default NuevaCita;
