@@ -4,11 +4,11 @@ import uuid from 'uuid';
 
 const stateInicial = {
   cita: {
-    mascota: '',
-    propietario: '',
+    empresa: '',
+    contacto: '',
     fecha: '',
-    hora: '',
-    sintomas: ''
+    medio: '',
+    mensaje: ''
   },
   error: false
 }
@@ -27,9 +27,9 @@ class NuevaCita extends React.Component {
   handleSubmit = ev => {
     ev.preventDefault();
 
-    const { mascota, propietario, fecha, hora, sintomas } = this.state.cita;
+    const { empresa, contacto, fecha, medio, mensaje } = this.state.cita;
 
-    if (mascota === '' || propietario === '' || fecha === '' || hora === '' || sintomas === '') {
+    if (empresa === '' || contacto === '' || fecha === '' || medio === '' || mensaje === '') {
       this.setState({
         error: true
       });
@@ -52,27 +52,39 @@ class NuevaCita extends React.Component {
           {error ? <div className="alert alert-danger mt-2 mb-5 text-center">Todos los campos son obligatorios</div> : null}
           <form onSubmit={this.handleSubmit}>
             <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Nombre Mascota</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Nombre Empresa</label>
               <div className="col-sm-8 col-lg-10">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Nombre mascota"
-                  name="mascota"
+                  placeholder="Nombre empresa"
+                  name="empresa"
                   onChange={this.handleChange}
-                  value={this.state.cita.mascota} />
+                  value={this.state.cita.empresa} />
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Nombre Dueño</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Nombre Contacto</label>
               <div className="col-sm-8 col-lg-10">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Nombre Dueño Mascota"
-                  name="propietario"
+                  placeholder="Nombre Contacto"
+                  name="contacto"
                   onChange={this.handleChange}
-                  value={this.state.cita.propietario} />
+                  value={this.state.cita.contacto} />
+              </div>
+            </div>
+            <div className="form-group row">
+              <label className="col-sm-4 col-lg-2 col-form-label">Medio de Contacto</label>
+              <div className="col-sm-8 col-lg-10">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Medio de Contacto"
+                  name="medio"
+                  onChange={this.handleChange}
+                  value={this.state.cita.medio} />
               </div>
             </div>
             <div className="form-group row">
@@ -87,29 +99,18 @@ class NuevaCita extends React.Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Hora</label>
-              <div className="col-sm-8 col-lg-4">
-                <input
-                  type="time"
-                  className="form-control"
-                  name="hora"
-                  onChange={this.handleChange}
-                  value={this.state.cita.hora} />
-              </div>
-            </div>
-            <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Síntomas</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Mensaje</label>
               <div className="col-sm-8 col-lg-10">
                 <textarea
                   className="form-control"
-                  name="sintomas"
-                  placeholder="Describe los síntomas"
+                  name="mensaje"
+                  placeholder="¿Qué mensaje de contacto mandaste?"
                   onChange={this.handleChange}
                   value={this.state.cita.sintomas}>
                 </textarea>
               </div>
             </div>
-            <input type="submit" className="py-3 mt-2 btn btn-success btn-block" value="Agregar nueva cita" />
+            <input type="submit" className="py-3 mt-2 btn btn-success btn-block" value="Agregar nueva solicitud" />
           </form>
         </div>
       </div >

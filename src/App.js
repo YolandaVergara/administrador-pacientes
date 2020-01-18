@@ -41,7 +41,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header
-          titulo='Administrador Pacientes Veterinaria' />
+          titulo='Control de ofertas de empresas' />
 
         <div className="row">
           <div className="col-md-10 mx-auto">
