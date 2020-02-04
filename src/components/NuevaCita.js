@@ -14,6 +14,7 @@ const stateInicial = {
 }
 
 class NuevaCita extends React.Component {
+
   state = { ...stateInicial }
   handleChange = ev => {
     this.setState({
@@ -48,40 +49,40 @@ class NuevaCita extends React.Component {
 
       <div className="card mt-5 py-5">
         <div className="card-body">
-          <h2 className="card-title text-center mb-5">Rellena el formulario para una nueva cita</h2>
+          <h2 className="card-title text-center mb-5">Rellena tu nueva solicitud de empleo</h2>
           {error ? <div className="alert alert-danger mt-2 mb-5 text-center">Todos los campos son obligatorios</div> : null}
-          <form onSubmit={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit} action="data.php" method="post">
             <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Nombre Empresa</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Empresa</label>
               <div className="col-sm-8 col-lg-10">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Nombre empresa"
+                  placeholder="Empresa"
                   name="empresa"
                   onChange={this.handleChange}
                   value={this.state.cita.empresa} />
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Nombre Contacto</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Persona de contacto</label>
               <div className="col-sm-8 col-lg-10">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Nombre Contacto"
+                  placeholder="Persona de contacto"
                   name="contacto"
                   onChange={this.handleChange}
                   value={this.state.cita.contacto} />
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Medio de Contacto</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Medio de contacto</label>
               <div className="col-sm-8 col-lg-10">
                 <input
                   type="text"
                   className="form-control"
-                  placeholder="Medio de Contacto"
+                  placeholder="Medio de contacto"
                   name="medio"
                   onChange={this.handleChange}
                   value={this.state.cita.medio} />
@@ -99,18 +100,35 @@ class NuevaCita extends React.Component {
               </div>
             </div>
             <div className="form-group row">
-              <label className="col-sm-4 col-lg-2 col-form-label">Mensaje</label>
+              <label className="col-sm-4 col-lg-2 col-form-label">Observaciones</label>
+              <div className="col-sm-8 col-lg-10">
+                <textarea
+                  className="form-control"
+                  name="observaciones"
+                  placeholder="¿Qué mensaje les mandaste para contactar?"
+                  onChange={this.handleChange}
+                  value={this.state.cita.observaciones}>
+                </textarea>
+                
+              </div>
+              
+            </div>
+            <div className="form-group row">
+              <label className="col-sm-4 col-lg-2 col-form-label">Mensaje enviado</label>
               <div className="col-sm-8 col-lg-10">
                 <textarea
                   className="form-control"
                   name="mensaje"
-                  placeholder="¿Qué mensaje de contacto mandaste?"
+                  placeholder="Anotaciones de interés"
                   onChange={this.handleChange}
-                  value={this.state.cita.sintomas}>
+                  value={this.state.cita.anotaciones}>
                 </textarea>
+                
               </div>
+              
             </div>
-            <input type="submit" className="py-3 mt-2 btn btn-success btn-block" value="Agregar nueva solicitud" />
+            
+            <input type="submit" className="py-3 mt-2 btn btn-dark btn-block" value="Agregar nueva solicitud" />
           </form>
         </div>
       </div >

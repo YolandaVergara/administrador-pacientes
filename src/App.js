@@ -3,6 +3,7 @@ import './bootstrap.min.css';
 import Header from './components/Header';
 import NuevaCita from './components/NuevaCita';
 import ListaCitas from './components/ListaCitas';
+import { Switch, Route } from 'react-router-dom';
 class App extends React.Component {
 
   state = {
@@ -43,20 +44,23 @@ class App extends React.Component {
         <Header
           titulo='Control de ofertas de empresas' />
 
-        <div className="row">
-          <div className="col-md-10 mx-auto">
-            <NuevaCita
-              crearNuevaCita={this.crearNuevaCita}
-            />
+        <Switch>
+          <Route exact path="/" component={NuevaCita} />
+          <Route path="/child/:id" />
+          <div className="row">
+            <div className="col-md-10 mx-auto">
+              <NuevaCita
+                crearNuevaCita={this.crearNuevaCita}
+              />
+            </div>
+            <div className="mt-5 col-md-10 mx-auto">
+            </div>
           </div>
-
-          <div className="mt-5 col-md-10 mx-auto">
-            <ListaCitas
-              citas={this.state.citas}
-              eliminarCita={this.eliminarCita}
-            />
-          </div>
-        </div>
+        </Switch >
+        <ListaCitas
+          citas={this.state.citas}
+          eliminarCita={this.eliminarCita}
+        />
       </div>
     );
   }
