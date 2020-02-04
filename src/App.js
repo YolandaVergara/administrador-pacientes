@@ -42,7 +42,7 @@ class App extends React.Component {
     return (
       <div className="container">
         <Header
-          titulo='Control de ofertas de empresas' />
+          titulo='Control de citas veterinaria' />
 
         <Switch>
           <Route exact path="/" component={NuevaCita} />
